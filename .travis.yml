@@ -1,0 +1,26 @@
+sudo: required
+language: bash
+env:
+  global:
+  - LIVE_SERVICE=mappad
+  - LIVE_CLUSTER_NAME=mappad
+  - LIVE_APP_NAME=mappad
+  - AWS_URL=306565252714.dkr.ecr.us-west-2.amazonaws.com
+  - secure: RFeZbdA6eEw2gDV8/8eRBhCv00wDKZnr4SKUBNu+sJpYiT5w7hJR4wV6HeVzdW/tc1uBDOLMN4kmH5c959S17/sJVHRbzLvYCpBPGuxWgqXs0XFda4G2rJfE55uy0wrqvJclfi9LnpboeOPHjMbaH5RDNXyXocTR1NIWyzJOKBmDBGHdmcg2BAhiQ1myN9H+4VeXpMv+X5ZRicRFkRGDvQ2mwNfZPTsravWFt4TRynrJiUM7i4fGZ6YGwCQw9oQ1dCAxBdL9I69KlppnWM3YiEBcyvvg0Wuu7Oygxio8+daxHF0EdDjty8UkH9Xsj3uS438Vm/G+etaGE5eZOVEaHE02aiJIbs+71ujj+cW0vwnzzj5rfSqpUGQgoT5oe3xaa05vPJUa4hF5FfBTTpuZCbryMt6yL9aJxy75cAT+QmZQ5o2TzK/ewZghB060kYbHPM4YY0A3mpdds72vdd1HP4A8Vp+RMyNaBPs4FI6YFV/rt6IczUn7di4bi94DW+TnMRTPq7lDnSG+iPSEiZUiq+gYfjC+gN3+C53Q3v+Hc1OXycwOdm2Yr27qX5f3pvKhqldxczz2+L4Jt0SA3YQlY+IfjT13i+NU8o0yJZUGVT/QAgt4VosyUIzopK2U7Xo+bFawI1F9qBmsXoD3yPoUhiHQjF/2+4Rvac4U+qt05OI=
+  - secure: z6vShVqnuMK/xMHdSP0ldtIGj1K6UuOahXjAqWcizXssIfaRzwhlbZ0KiavrHAjOXVT6vdqn1NZISpE8u0Qe17Les9rKNTtok+Z6cPCpXvc2VrujCCeLT3TdiWloeJCSIQl/6kB7A+lz7Tudn/yFu9sCFqjQ0udGbu/DIqIrlPvZvrUzHHN9PHO22S0yAF54/RsQmH3jsHK53UDCYRVeLviF5mFZSFbXYhWFeOEsUYfXzJQ4okneQeoqSr0fqGpc8L1DGQ7xhiNnISS5ERaK87ujlhzn3U/tcyET+tVz2b4OgZExXb17+3LTxzMAgBFApAPFbKVLHcFWXRNHK56k8shOgXLjyrbJm+tEApCld87sMiui8zB07ZoJd81IQmVbRGriObGLRKc9TD6FVHV6vHSg+Mt+2YcjNAtrEVCerWq344hrciO0a2pEd1shyBnbX5OW9wzs6InwY+fT1IK6NIn4EZZs9SUHrNHeo3NiLfZqamjpnbv49kGxTyvbxx6BNI1Tw6WHsdi+50fUFtBj2un+I+kwqAPQgAFd5LgobymYKc9ULJLNBLZpH77ENbwlaoiouHb2fnW2hrx/pOao2Qye842BY7fRugUp+6qKGUxE+S6NQXjFGJVjhzaR3Dm2z2veQp48Okwn7qDtNXVkI5wNuWiwl92tjZa5JlId1iQ=
+services:
+  - docker
+before_install:
+  - docker build -t mappad:latest .
+  - docker run -d --name app mappad:latest
+  - docker ps -a
+script:
+  - docker exec app python -m unittest discover
+after_script:
+  - docker rm -f app
+after_success:
+  # - docker-deploy/docker_push.sh
+  # - docker-deploy/ecs_deploy.sh
+notifications:
+  email:
+    - nicholas.bayborodin@gmail.com

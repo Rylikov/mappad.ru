@@ -1,0 +1,75 @@
+{% extends 'base.jinja' %}
+
+{% block css %}
+<!-- Leafleft CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+{% endblock %}
+
+{% block content %}
+<div class="feed-container">
+    <div class="feed">
+        <div class="tracks-feed-entry">
+            <div class="gps-track">
+                <h3>Прогулка вдоль набережной</h3>
+                <div>11.07.2919</div>
+                <div id="map1" style="width: 600px; height: 400px;"></div>
+            </div>
+        </div>
+        <div class="tracks-feed-entry">
+            <div class="gps-track">
+                <h3>Прогулка вдоль набережной</h3>
+                <div>11.07.2919</div>
+                <div id="map2" style="width: 600px; height: 400px;"></div>
+            </div>
+        </div>
+        <div class="tracks-feed-entry">
+            <div class="gps-track">
+                <h3>Прогулка вдоль набережной</h3>
+                <div>11.07.2919</div>
+                <div id="map3" style="width: 600px; height: 400px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+    integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+    crossorigin=""></script>
+
+<script>
+        var map1 = L.map('map1').setView([48.480223, 135.071917], 13);
+
+	    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibmJheWJvcm9kaW4iLCJhIjoiY2sweWtiNDFuMDFuYjNvbXZrNzdtOTF6OSJ9.KhgqTQwyk23SRljw148BaA', {
+		    maxZoom: 18,
+		    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+			    '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			    'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		    id: 'mapbox.streets'
+	    }).addTo(map1);
+
+        var map2 = L.map('map2').setView([48.480223, 135.071917], 13);
+
+	    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibmJheWJvcm9kaW4iLCJhIjoiY2sweWtiNDFuMDFuYjNvbXZrNzdtOTF6OSJ9.KhgqTQwyk23SRljw148BaA', {
+		    maxZoom: 18,
+		    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+			    '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			    'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		    id: 'mapbox.streets'
+	    }).addTo(map2);
+
+        var map3 = L.map('map3').setView([48.480223, 135.071917], 13);
+
+	    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibmJheWJvcm9kaW4iLCJhIjoiY2sweWtiNDFuMDFuYjNvbXZrNzdtOTF6OSJ9.KhgqTQwyk23SRljw148BaA', {
+		    maxZoom: 18,
+		    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+			    '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			    'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		    id: 'mapbox.streets'
+	    }).addTo(map3);
+    </script>
+{% endblock %}

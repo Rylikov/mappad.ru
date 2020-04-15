@@ -1,0 +1,32 @@
+<section
+    id="track-{{ track.id }}"
+    class="gpx-map"
+    data-map-target="map-{{ track.id }}"
+    data-gpx-source='{{ track.raw_gpx }}'
+>
+    <header>
+            <h3>{{ track.title }}</h3>
+            <div class="row description-panel">
+                <span class="start description-left"></span>
+                <span class="description-right">
+                    <a href="{{ url_for('user.user', username=track.author.username) }}">{{ track.author.username }}</a>
+                </span>
+            </div>
+    </header>
+
+    <article>
+            <div class="map" id="map-{{ track.id }}"></div>
+    </article>
+
+    <footer>
+        <ul class="info">
+            <li>Distance:&nbsp;<span class="distance"></span>&nbsp;mi</li>
+            &mdash; <li>Duration:&nbsp;<span class="duration"></span></li>
+            &mdash; <li>Pace:&nbsp;<span class="pace"></span>/mi</li>
+            &mdash; <li>Avg&nbsp;HR:&nbsp;<span class="avghr"></span>&nbsp;bpm</li>
+            &mdash; <li>Elevation:&nbsp;+<span class="elevation-gain"></span>&nbsp;ft,
+                -<span class="elevation-loss"></span>&nbsp;ft
+                (net:&nbsp;<span class="elevation-net"></span>&nbsp;ft)</li>
+        </ul>
+    </footer>
+</section>

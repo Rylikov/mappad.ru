@@ -1,0 +1,42 @@
+<div class="card profile-card" id="profile-card">
+    <div class="card-body text-center">
+        <a href="#">
+            <div class="avatar profile-avatar avatar-lg">
+                <div class="avatar-content">
+                    <div class="avatar-img-wrapper">
+                        <img alt="Nicholas Bayborodin" class="avatar-img" src="{{ current_user.avatar(70) }}">
+                    </div>
+                </div>
+            </div>
+            <h2 class="text-title2 mt-sm mb-md">
+                <div class="user-name">
+                {% if current_user.full_name %}
+                    {{ current_user.full_name }}
+                {% else %}
+                    {{ current_user.username }}
+                {% endif %}
+                </div>
+            </h2>
+        </a>
+        <ul class="list-stats text-center">
+            <li>
+                <a class="stat" href="#">
+                    <div class="stat-subtext">Подписки</div>
+                    <b class="stat-text">{{ current_user.followed.count() }}</b>
+                </a>
+            </li>
+            <li>
+                <a class="stat" href="#">
+                    <div class="stat-subtext">Подписчики</div>
+                    <b class="stat-text">{{ current_user.followers.count() }}</b>
+                </a>
+            </li>
+            <li>
+                <a class="stat" href="#">
+                    <div class="stat-subtext">Треки</div>
+                    <b class="stat-text">{{ current_user.tracks.count() }}</b>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

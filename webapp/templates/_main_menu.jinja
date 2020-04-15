@@ -1,0 +1,32 @@
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+        <h5 class="my-0 mr-md-auto font-weight-normal">
+            <a href="{{ url_for('home.index') }}">Mappad</a>
+        </h5>
+        <nav class="my-2 my-md-0 mr-md-3">
+            <a class="p-2 text-dark" href="{{ url_for('track.last_tracks') }}">Новые треки</a>
+            <a class="p-2 text-dark" href="{{ url_for('track.my_tracks') }}">Мои треки</a>
+            <a class="p-2 text-dark" href="{{ url_for('track.add_track') }}">Добавить трек</a>
+        </nav>
+        {% if current_user.is_anonymous %}
+            <a class="btn btn-outline-primary" href="{{ url_for('user.login') }}">Login</a>
+        {% else %}
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle"
+                    href="#"
+                    id="navbarDropdownMenuLink"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                >
+                <img src="{{ current_user.avatar(36) }}">
+                </a>
+                <div class="dropdown-menu dropdown-menu-right text-right" aria-labelledby="navbarDropdownMenuLink">
+                    <div class="dropdown-item">{{ current_user.username }}</div>
+                    <hr>
+                    <a class="dropdown-item" href="{{ url_for('user.user', username=current_user.username) }}">Профиль</a>
+                    <a class="dropdown-item" href="{{ url_for('user.logout') }}">Выход</a>
+                </div>
+            </div>
+      {% endif %}
+    </div>
